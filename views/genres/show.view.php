@@ -21,6 +21,30 @@
             </div>
         </div>
     </form>
+
+    <h2 class="mt-5">Filmovi u zanru <?= $genre['ime'] ?></h2>
+    <hr>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naslov</th>
+                <th>Godina</th>
+                <th>Tip filma</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($movies as $movie): ?>
+                <tr>
+                    <td><?= $movie['id'] ?></td>
+                    <td><a href="/movies/show?id=<?= $movie['id'] ?>"><?= $movie['naslov'] ?></a></td>
+                    <td><?= $movie['godina'] ?></td>
+                    <td><?= $movie['tip_filma'] ?></td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
 </main>
 
 <?php include_once base_path('views/partials/footer.php'); ?>

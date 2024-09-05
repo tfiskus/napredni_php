@@ -1,6 +1,7 @@
 <?php
 
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
@@ -17,7 +18,8 @@ $rules = [
 
 $form = new Validator($rules, $postData);
 if ($form->notValid()){
-    dd($form->errors());
+    Session::flash('errors', $form->errors());
+    goBack();
 }
 
 $data = $form->getData();

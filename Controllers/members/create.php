@@ -4,7 +4,6 @@ use Core\Session;
 
 $pageTitle = 'Clanovi';
 
-$errors = Session::all('errors');
-Session::unflash();
+$errors = Session::get('errors');
 
 require base_path('views/members/create.view.php');

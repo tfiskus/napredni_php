@@ -33,7 +33,7 @@ class Database {
         return self::$instance;
     }
 
-    public function query($sql, $params = [])
+    public function query($sql, $params = []): self
     {
         $this->statement = $this->pdo->prepare($sql);
 
@@ -74,5 +74,10 @@ class Database {
     public function lastId()
     {
         return $this->pdo->lastInsertId();
+    }
+
+    public function connection(): PDO
+    {
+        return $this->pdo;
     }
 }

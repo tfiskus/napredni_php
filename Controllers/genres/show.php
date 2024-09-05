@@ -1,6 +1,7 @@
 <?php
 
 use Core\Database;
+use Core\Session;
 
 if (!isset($_GET['id'])) {
     abort();
@@ -8,8 +9,10 @@ if (!isset($_GET['id'])) {
 
 $db = Database::get();
 
-$sql = 'SELECT * from zanrovi WHERE id = :id';
+$genre = $db->query('SELECT * FROM zanrovi WHERE id = ?', [$_GET['id']])->findOrFail();
 
-$genre = $db->query($sql, ['id' => $_GET['id']])->findOrFail();
+$errors = Session::get('errors');
 
-require base_path('views/genres/show.view.php');
+$pageTitle = 'Zanrovi';
+
+require base_path('views/genres/edit.view.php');

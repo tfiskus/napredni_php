@@ -10,7 +10,6 @@ $members = $db->query($sql)->all();
 
 $pageTitle = 'Clanovi';
 
-$message = Session::all('message');
-Session::unflash();
+$message = Session::get('message');
 
 require base_path('views/members/index.view.php');

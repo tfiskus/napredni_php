@@ -151,10 +151,31 @@ class Validator
         }
     }
 
+    private function gt($userInput, $field, $value)
+    {
+        if(floatval($userInput) < intval($value)){
+            $this->addError($field, "Polje $field mora biti brojcana vrijednost veca od $value.");
+        }
+    }
+
+    private function lt($userInput, $field, $value)
+    {
+        if(floatval($userInput) > intval($value)){
+            $this->addError($field, "Polje $field mora biti brojcana vrijednost manja od $value.");
+        }
+    }
+
     private function clanskiBroj($userInput, $field)
     {
         if(!preg_match('/^(CLAN\d{5})$/', $userInput)){
             $this->addError($field, "Polje $field mora biti u formatu CLANxxxxx");
         }
+    }
+
+    private function password($userInput, $field)
+    {
+        // if(!preg_match('/^(CLAN\d{5})$/', $userInput)){
+        //     $this->addError($field, "Polje $field mora sadrzavati bar jedan poseban znak i jedno veliko slovo");
+        // }
     }
 }

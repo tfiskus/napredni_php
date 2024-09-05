@@ -4,9 +4,28 @@ namespace Core;
 
 class Session
 {
+    public static function get($key): string|array
+    {
+        // if(isset($_SESSION['_flash']) && isset($_SESSION['_flash'][$key])){
+        //     return $_SESSION['_flash'][$key];
+        // }elseif(isset($_SESSION[$key])){
+        //     return $_SESSION[$key];
+        // }else {
+        //     return '';
+        // }
+
+        if(isset($_SESSION['_flash'][$key])){
+            $flash = $_SESSION['_flash'][$key];
+            self::unflash($key);
+            return $flash;
+        }
+
+        return $_SESSION[$key] ?? '';
+    }
+
     public static function has($key): bool
     {
-        return (bool)static::get($key);
+        return (bool)self::get($key);
     }
 
     public static function put($key, $value): void
@@ -14,24 +33,18 @@ class Session
         $_SESSION[$key] = $value;
     }
 
-    public static function get($key): string
-    {
-        return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? '';
-    }
-
-    public static function all($key): array
-    {
-        return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? [];
-    }
-
     public static function flash($key, $value): void
     {
         $_SESSION['_flash'][$key] = $value;
     }
 
-    public static function unflash(): void
+    public static function unflash(string $key = null): void
     {
-        unset($_SESSION['_flash']);
+        if($key){
+            unset($_SESSION['_flash'][$key]);
+        } else {
+            unset($_SESSION['_flash']);
+        }
     }
 
     public static function clear(): void

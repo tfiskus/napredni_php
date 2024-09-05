@@ -23,3 +23,12 @@ nav .nav a.nav-link{
 nav .nav a.nav-link.active{
     color: rgb(108, 117, 125);
 }
+
+div.alert {
+    position: absolute;
+    top: 85px;
+    left: 220px;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+}

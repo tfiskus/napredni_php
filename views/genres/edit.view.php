@@ -4,7 +4,7 @@
     <h1>Uredi <?= $genre['ime'] ?></h1>
     <hr>
 
-    <form class="row g-3 mt-3" action="/genres/update" method="POST">
+    <form class="row g-3 mt-3" action="/genres" method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" value="<?= $genre['id'] ?>">
         <div class="col-auto">

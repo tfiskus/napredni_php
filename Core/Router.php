@@ -12,7 +12,8 @@ class Router
             'method' => $method,
             'uri' => $uri,
             'controller' => $action[0],
-            'function' => $action[1]
+            'function' => $action[1],
+            'auth' => $action[2] ?? null
         ];
     }
 
@@ -47,6 +48,14 @@ class Router
             if ($route['uri'] === $uri && $route['method'] === $method) {
                 $classPath = $route['controller'];
                 $function = $route['function'];
+
+                if ($route['auth'] === 'auth' && Session::has('user') === false) {
+                    redirect('login');
+                }
+
+                if ($route['auth'] === 'guest' && Session::has('user') === true) {
+                    redirect('dashboard');
+                }
 
                 $controller = new $classPath();
                 $controller->$function();

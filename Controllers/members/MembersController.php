@@ -14,6 +14,10 @@ class MembersController
 
     public function __construct()
     {
+        if (Session::has('user') === false){
+            redirect('login');
+        }
+
         $this->db = Database::get();
     }
 

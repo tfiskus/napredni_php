@@ -6,6 +6,7 @@ use Controllers\HomeController;
 use Controllers\DashboardController;
 use Controllers\LoginController;
 use Controllers\RegisterController;
+use Controllers\PricesController;
 use Core\Router;
 
 /** @var Router $router */
@@ -35,10 +36,16 @@ $router->get('/members/edit',       [MembersController::class, 'edit']);
 $router->patch('/members/update',   [MembersController::class, 'update']);
 $router->delete('/members/destroy', [MembersController::class, 'destroy']);
 
+$router->get('/prices',             [PricesController::class, 'index']);
+$router->get('/prices/show',        [PricesController::class, 'show']);
+$router->get('/prices/create',      [PricesController::class, 'create']);
+$router->post('/prices',            [PricesController::class, 'store']);
+$router->get('/prices/edit',        [PricesController::class, 'edit']);
+$router->patch('/prices',           [PricesController::class, 'update']);
+$router->delete('/prices/destroy',  [PricesController::class, 'destroy']);
 
 
-
-
+/*
 return [
     '/'                 => 'Controllers/home.php',
     '/dashboard'        => 'Controllers/dashboard/index.php',
@@ -58,6 +65,14 @@ return [
     '/formats/edit'     => 'Controllers/formats/edit.php',
     '/formats/update'   => 'Controllers/formats/update.php',
     '/formats/destroy'  => 'Controllers/formats/destroy.php',
+
+    '/prices'          => 'Controllers/prices/index.php',
+    '/prices/show'     => 'Controllers/prices/show.php',
+    '/prices/create'   => 'Controllers/prices/create.php',
+    '/prices/store'    => 'Controllers/prices/store.php',
+    '/prices/edit'     => 'Controllers/prices/edit.php',
+    '/prices/update'   => 'Controllers/prices/update.php',
+    '/prices/destroy'  => 'Controllers/prices/destroy.php',
 
     '/rentals/destroy'  => 'Controllers/rentals/destroy.php',
 ];
